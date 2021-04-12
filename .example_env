@@ -1,0 +1,4 @@
+BD_HOST="host"
+BD_USERNAME="username"
+BD_PASSWORD="mysql-password"
+SECRET="secret"

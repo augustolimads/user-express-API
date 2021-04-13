@@ -1,14 +1,16 @@
 import {Request, Response} from 'express';
-import {body, validationResult} from 'express-validator';
+import User from '../models/User';
 
 class UserController{
 
     async index(req: Request, res: Response){}
 
     async create(req: Request, res: Response){
-        const {name, email, password} = req.body;
+        const {email, password, name} = req.body;
 
-        res.status(201).send("oioioi create User")
+        await User.new(email, password, name);
+
+        res.status(201).send("usuário cadastrado com sucesso!")
     }
 
 }

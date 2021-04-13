@@ -24,18 +24,18 @@ class UserController {
 
     await User.new(email, password, name);
 
-    res.status(201).send("usuário cadastrado com sucesso!");
+    res.status(201).json({msg:"usuário cadastrado com sucesso!"});
   }
 
   async update(req: Request, res: Response) {
-    const { id, email, password, name } = req.body;
+    const { id, email, name, role } = req.body;
 
-    const result = await User.updateUser(id, email, password, name);
+    const result = await User.updateUser(id, email, name, role);
 
     if (result) {
-      res.json({msg: "usuário atualizado com sucesso!"});
+      return res.json({msg: "usuário atualizado com sucesso!"});
     } else {
-      res.status(404).json(result);
+      return res.status(404).json({msg: "falha na atualização"});
     }
   }
 }

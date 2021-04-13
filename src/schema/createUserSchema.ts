@@ -6,7 +6,7 @@ const schema = [
   body("email").custom((value) => {
     return User.findUserByEmail(value).then((user) => {
       if (user) {
-        return Promise.reject("Email já cadastrado no banco de dados.");
+        return Promise.reject("Email já cadastrado no sistema.");
       }
     });
   }),
@@ -15,4 +15,4 @@ const schema = [
     .withMessage("senha deve ter pelo menos 3 caracteres"),
 ];
 
-export { schema as userSchema };
+export { schema as createUserSchema };

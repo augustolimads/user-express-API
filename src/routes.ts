@@ -1,12 +1,16 @@
 import express from "express";
 import HomeController from "./controllers/HomeController";
 import UserController from "./controllers/UserController";
-import { userValidate } from "./middlewares/user-validate";
-import { userSchema } from "./schema/user-schema";
+import { validate } from "./middlewares/validate";
+import { createUserSchema } from "./schema/createUserSchema";
+import { editUserSchema } from "./schema/editUserSchema";
 
 const routes = express.Router();
 
-routes.get('/', HomeController.index);
-routes.post('/user', userSchema, userValidate, UserController.create)
+routes.get("/", HomeController.index);
+routes.get("/user", UserController.index);
+routes.get("/user/:id", UserController.findUser);
+routes.post("/user", createUserSchema, validate, UserController.create);
+routes.put("/user", editUserSchema, validate, UserController.update);
 
 export default routes;
